@@ -9,3 +9,4 @@ dist/
 .env
 # sqlc
 internal/repo/sqlc/
+.sqlc.yaml

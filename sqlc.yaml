@@ -1,0 +1,15 @@
+version: "2"
+
+sql:
+  - engine: "postgresql"        # целевая СУБД
+    schema:
+      - "db/migrations"         # sqlc читает схему из миграций
+    queries:
+      - "db/queries"            # тут будут наши SQL-запросы
+    gen:
+      go:
+        package: "sqlc"         # имя пакета для сгенерённого кода
+        out: "internal/repo/sqlc"
+        sql_package: "pgx/v5"   # используем pgx вместо database/sql
+        emit_json_tags: true
+        emit_empty_slices: true

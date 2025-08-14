@@ -4,10 +4,8 @@ import (
 	"log"
 	"net/http"
 	"os"
-
-	"github.com/go-chi/chi/v5" // Лёгкий и быстрый роутер для Go
-	"github.com/joho/godotenv" // Для загрузки переменных окружения из .env файла
-)
+	"github.com/go-chi/chi/v5" // Бибилиотека роутера на go 
+	"github.com/joho/godotenv" // Для загрузки переменных окружения из .env файла)
 
 func main() {
 	_ = godotenv.Load()
