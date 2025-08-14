@@ -1,0 +1,30 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:16                  # Версия PostgreSQL
+    environment:
+      POSTGRES_USER: tasker              # Имя пользователя
+      POSTGRES_PASSWORD: tasker          # Пароль
+      POSTGRES_DB: tasker                 # Имя базы данных
+    ports:
+      - "5432:5432"                       # Проброс порта Postgres на localhost
+    volumes:
+      - pgdata:/var/lib/postgresql/data   # Хранение данных на диске (persist)
+    healthcheck:                          # Проверка, что Postgres запустился
+      test: ["CMD-SHELL", "pg_isready -U tasker -d tasker"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine                # Лёгкий образ Redis
+    ports:
+      - "6379:6379"                       # Проброс порта Redis
+    healthcheck:                          # Проверка, что Redis запустился
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  pgdata:                                 # Том для хранения данных Postgres

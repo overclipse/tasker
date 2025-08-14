@@ -1,0 +1,11 @@
+# Go
+bin/
+dist/
+*.out
+# IDE
+.vscode/
+.idea/
+# Env
+.env
+# sqlc
+internal/repo/sqlc/
